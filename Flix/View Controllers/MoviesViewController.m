@@ -8,7 +8,7 @@
 
 #import "MoviesViewController.h"
 #import "MovieCell.h"
-//#import "DetailsViewController.h"
+#import "DetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
 
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -56,10 +56,8 @@
             // TODO: Get the array of movies
             // TODO: Store the movies in a property to use elsewhere
             self.movies = dataDictionary[@"results"];
-            for (NSDictionary *movie in self.movies) {
-                NSLog(@"%@",movie[@"title"]);
-            }
             
+            NSLog(@"%lu",(unsigned long)self.movies.count);
             
             // TODO: Reload your table view data
             [self.tableView reloadData];
@@ -102,14 +100,21 @@
     
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    UITableViewCell *tappedCell = sender;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+    NSDictionary *movie = self.movies[indexPath.row];
+    
+    DetailsViewController *detailsViewController = [segue destinationViewController];
+    detailsViewController.movie = movie;
 }
-*/
+
 
 @end
