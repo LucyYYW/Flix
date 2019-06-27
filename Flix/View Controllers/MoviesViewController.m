@@ -11,7 +11,11 @@
 #import "DetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
 
-@interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
+
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) NSArray *data;
+@property (strong, nonatomic) NSArray *filteredData;
 
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -28,6 +32,9 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    
+    self.searchBar.delegate = self;
+    
     
     // Do any additional setup after loading the view.
     [self fetchMovies];
@@ -81,6 +88,9 @@
             
             NSLog(@"%lu",(unsigned long)self.movies.count);
             
+            self.data = self.movies;
+            self.filteredData = self.data;
+            
             // TODO: Reload your table view data
             [self.tableView reloadData];
             
@@ -97,7 +107,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:
     (NSInteger)section {
-    return self.movies.count;
+    return self.filteredData.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:
@@ -106,7 +116,7 @@
     
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
     
-    NSDictionary *movie = self.movies[indexPath.row];
+    NSDictionary *movie = self.filteredData[indexPath.row];
     cell.titleLabel.text = movie[@"title"];
     cell.synopsisLabel.text = movie[@"overview"];
     
@@ -121,8 +131,40 @@
     return cell;
 }
     
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    
+    if (searchText.length != 0) {
+        
+        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSDictionary *evaluatedMovie, NSDictionary *bindings) {
+            NSString *evaluatedTitle = evaluatedMovie[@"title"];
+            return [evaluatedTitle containsString:searchText];
+        }];
+        self.filteredData = [self.data filteredArrayUsingPredicate:predicate];
+        
+        
+        
+        NSLog(@"%@", self.filteredData);
+        
+    }
+    else {
+        self.filteredData = self.data;
+    }
+    
+    [self.tableView reloadData];
+    
+}
 
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    self.searchBar.showsCancelButton = YES;
+}
 
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    self.searchBar.showsCancelButton = NO;
+    self.searchBar.text = @"";
+    [self.searchBar resignFirstResponder];
+    
+    [self.tableView reloadData];
+}
 
 #pragma mark - Navigation
 
