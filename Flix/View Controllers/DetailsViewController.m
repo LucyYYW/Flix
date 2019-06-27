@@ -33,7 +33,7 @@
    
     
     
-    ;
+    
     
     
     NSString *backdropURLString = self.movie[@"backdrop_path"];
