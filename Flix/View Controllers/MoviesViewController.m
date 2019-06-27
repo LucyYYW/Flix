@@ -34,6 +34,10 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+    
+    
+    
+    
     [self.activityIndicator startAnimating];
 }
 
@@ -48,6 +52,22 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error != nil) {
             NSLog(@"%@", [error localizedDescription]);
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Get Movies"
+                                                                           message:@"Internet connection appears to be offline."
+                                                                    preferredStyle:(UIAlertControllerStyleAlert)];
+            
+            
+            // create an Try Again action
+            UIAlertAction *tryAgainAction = [UIAlertAction actionWithTitle:@"Try Again"
+                                                                     style:UIAlertActionStyleDefault
+                                                                   handler:^(UIAlertAction * _Nonnull action) {
+                                                                       // handle response here.
+                                                                   }];
+            // add the Try Again action to the alert controller
+            [alert addAction:tryAgainAction];
+            [self presentViewController:alert animated:YES completion:^{
+                // optional code for what happens after the alert controller has finished presenting
+            }];
         }
         else {
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
