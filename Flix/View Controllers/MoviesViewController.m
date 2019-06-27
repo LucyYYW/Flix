@@ -13,6 +13,7 @@
 
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
 
+
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *movies;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
