@@ -79,14 +79,14 @@
         else {
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             
-            NSLog(@"%@", dataDictionary);
+            //NSLog(@"%@", dataDictionary);
             
             
             // TODO: Get the array of movies
             // TODO: Store the movies in a property to use elsewhere
             self.movies = dataDictionary[@"results"];
             
-            NSLog(@"%lu",(unsigned long)self.movies.count);
+            //NSLog(@"%lu",(unsigned long)self.movies.count);
             
             self.data = self.movies;
             self.filteredData = self.data;

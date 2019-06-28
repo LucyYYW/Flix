@@ -119,12 +119,13 @@
     
     
     TrailerViewController *trailerViewController = [segue destinationViewController];
-    //trailerViewController.movie = self.movie;
+    trailerViewController.movie = self.movie;
     
     
-    
+    /*
     NSString *trailerURL = [NSString stringWithFormat:@"https://api.themoviedb.org/3/movie/%@/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US]", self.movie[@"id"]];
-
+    
+    
     
     NSURL *url = [NSURL URLWithString:trailerURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
@@ -142,10 +143,11 @@
             NSString *skey = b[@"key"];
             NSString *baseURLString = @"https://www.youtube.com/watch?v=";
             trailerViewController.videoKey = [baseURLString stringByAppendingString:skey];
-            NSLog(@"%@", dataDictionary);
+            
         }
     }];
     [task resume];
+     */
 }
 
 
