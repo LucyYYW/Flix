@@ -162,7 +162,7 @@
     self.searchBar.showsCancelButton = NO;
     self.searchBar.text = @"";
     [self.searchBar resignFirstResponder];
-    
+    self.filteredData = self.data;
     [self.tableView reloadData];
 }
 
