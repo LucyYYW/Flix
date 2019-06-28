@@ -7,17 +7,34 @@
 //
 
 #import "TrailerViewController.h"
+#import <WebKit/WebKit.h>
 
 @interface TrailerViewController ()
+@property (weak, nonatomic) IBOutlet WKWebView *trailerWebView;
 
 @end
 
 @implementation TrailerViewController
 
-- (void)viewDidLoad {
+
+- (void) viewDidLoad {
+    
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    
+    // Convert the url String to a NSURL object.
+    NSURL *url = [NSURL URLWithString:self.videoKey];
+    
+    // Place the URL in a URL Request.
+    NSURLRequest *request = [NSURLRequest requestWithURL:url
+                                             cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                         timeoutInterval:10.0];
+    // Load Request into WebView.
+    [self.trailerWebView loadRequest:request];
 }
+
+
+
 
 /*
 #pragma mark - Navigation

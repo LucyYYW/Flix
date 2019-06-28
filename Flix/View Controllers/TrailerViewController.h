@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TrailerViewController : UIViewController
 
+@property (nonatomic, strong) NSString *videoKey;
+
 @end
 
 NS_ASSUME_NONNULL_END

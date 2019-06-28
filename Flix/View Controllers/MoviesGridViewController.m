@@ -52,7 +52,7 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
     [self.collectionView insertSubview:self.refreshControl atIndex:0];
-    [self.activityIndicator startAnimating];
+    
 }
 
 
@@ -60,6 +60,7 @@
 - (void) fetchMovies {
     //make network call
     //setup
+    [self.activityIndicator startAnimating];
     NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/299534/similar?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US&page=1"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
@@ -97,7 +98,7 @@
             
             self.data = self.movies;
             self.filteredData = self.data;
-            
+            [self.activityIndicator stopAnimating];
             [self.collectionView reloadData];
             
             

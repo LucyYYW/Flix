@@ -8,6 +8,7 @@
 
 #import "DetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "TrailerViewController.h"
 
 
 @interface DetailsViewController ()
@@ -56,14 +57,45 @@
 
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    
+    TrailerViewController *trailerViewController = [segue destinationViewController];
+    //trailerViewController.movie = self.movie;
+    
+    
+    
+    NSString *trailerURL = [NSString stringWithFormat:@"https://api.themoviedb.org/3/movie/%@/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US]", self.movie[@"id"]];
+
+    
+    NSURL *url = [NSURL URLWithString:trailerURL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+    
+    
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error != nil) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+        else {
+            NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            NSArray *a = dataDictionary[@"results"];
+            NSDictionary *b = a[0];
+            NSString *skey = b[@"key"];
+            NSString *baseURLString = @"https://www.youtube.com/watch?v=";
+            trailerViewController.videoKey = [baseURLString stringByAppendingString:skey];
+            NSLog(@"%@", dataDictionary);
+        }
+    }];
+    [task resume];
 }
-*/
+
 
 @end
+
