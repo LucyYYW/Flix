@@ -9,6 +9,7 @@
 #import "DetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "TrailerViewController.h"
+#import "LargePosterViewController.h"
 
 
 @interface DetailsViewController ()
@@ -43,7 +44,7 @@
                                         
                                         // imageResponse will be nil if the image is cached
                                         if (imageResponse) {
-                                            NSLog(@"Image was NOT cached, fade in image");
+                                            //NSLog(@"Image was NOT cached, fade in image");
                                             weakSelf.posterView.alpha = 0.0;
                                             weakSelf.posterView.image = image;
                                             
@@ -53,7 +54,7 @@
                                             }];
                                         }
                                         else {
-                                            NSLog(@"Image was cached so just update the image");
+                                            //NSLog(@"Image was cached so just update the image");
                                             weakSelf.posterView.image = image;
                                         }
                                     }
@@ -76,17 +77,17 @@
                                         
                                         // imageResponse will be nil if the image is cached
                                         if (imageResponse) {
-                                            NSLog(@"Image was NOT cached, fade in image");
+                                            //NSLog(@"Image was NOT cached, fade in image");
                                             weakSelf2.backdropView.alpha = 0.0;
                                             weakSelf2.backdropView.image = image;
-                                            
+                                            //self.backdropView.image = [UIImage imageNamed: @"myNewImage.png"];
                                             //Animate UIImageView back to alpha 1 over 0.3sec
                                             [UIView animateWithDuration:0.3 animations:^{
                                                 weakSelf2.backdropView.alpha = 1.0;
                                             }];
                                         }
                                         else {
-                                            NSLog(@"Image was cached so just update the image");
+                                            //NSLog(@"Image was cached so just update the image");
                                             weakSelf2.backdropView.image = image;
                                         }
                                     }
@@ -109,7 +110,6 @@
 
 
 
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -117,9 +117,31 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     
+    if ([segue.identifier  isEqual: @"trailer"]) {
+        TrailerViewController *trailerViewController = [segue destinationViewController];
+        trailerViewController.movie = self.movie;
+    } else if ([segue.identifier  isEqual: @"largePoster"]) {
+        NSLog(@"largePoster");
+        LargePosterViewController *largePosterViewController = [segue destinationViewController];
+        largePosterViewController.movie = self.movie;
+        
+        //NSLog(self.movie);
+        /*
+        //LargePosterViewController *largePosterViewController = [segue destinationViewController];
+        //LargePosterViewController *largeVC = [[LargePosterViewController init] alloc];
+        self.posterView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *pgr = [[UITapGestureRecognizer alloc]
+                                         initWithTarget:self.posterView action:@selector(handlePinch:)];
+        pgr.delegate = self;
+        [self.posterView addGestureRecognizer:pgr];
+        [pgr release];
+        */
+        
+        
+        
+    }
     
-    TrailerViewController *trailerViewController = [segue destinationViewController];
-    trailerViewController.movie = self.movie;
+    
     
     
     /*

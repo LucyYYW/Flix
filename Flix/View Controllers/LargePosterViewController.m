@@ -7,6 +7,7 @@
 //
 
 #import "LargePosterViewController.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface LargePosterViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *posterView;
@@ -17,8 +18,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //NSLog(@"didload");
     // Do any additional setup after loading the view.
+    
+    NSString *baseURLString = @"https://image.tmdb.org/t/p/w500";
+    NSString *posterURLString = self.movie[@"poster_path"];
+    
+    NSString *fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
+    NSURL *posterURL = [NSURL URLWithString:fullPosterURLString];
+    [self.posterView setImageWithURL:posterURL];
+    
+    
+    
+    
+    
+    
 }
+- (IBAction)onButton:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
+
 
 /*
 #pragma mark - Navigation

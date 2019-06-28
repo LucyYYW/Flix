@@ -142,7 +142,7 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     __weak MovieCollectionViewCell *weakSelf = cell;
-    [cell.posterView setImageWithURLRequest:request placeholderImage:nil
+    [cell.posterView setImageWithURLRequest:request placeholderImage:[UIImage imageNamed:@"placeholder-image"]
                                     success:^(NSURLRequest *imageRequest, NSHTTPURLResponse *imageResponse, UIImage *image) {
                                         
                                         // imageResponse will be nil if the image is cached
@@ -163,6 +163,7 @@
                                     }
                                     failure:^(NSURLRequest *request, NSHTTPURLResponse * response, NSError *error) {
                                         // do something for the failure condition
+//                                        weakSelf.posterView.image = 
                                     }];
     
     

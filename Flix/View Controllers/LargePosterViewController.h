@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LargePosterViewController : UIViewController
 
-@property (atomic,strong) NSString *path;
+@property (nonatomic,strong) NSDictionary *movie;
 
 @end
 

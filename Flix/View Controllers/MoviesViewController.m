@@ -134,12 +134,12 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     __weak MovieCell *weakSelf = cell;
-    [cell.posterView setImageWithURLRequest:request placeholderImage:nil
+    [cell.posterView setImageWithURLRequest:request placeholderImage:[UIImage imageNamed:@"placeholder-image"]
                                     success:^(NSURLRequest *imageRequest, NSHTTPURLResponse *imageResponse, UIImage *image) {
                                         
                                         // imageResponse will be nil if the image is cached
                                         if (imageResponse) {
-                                            NSLog(@"Image was NOT cached, fade in image");
+                                            //NSLog(@"Image was NOT cached, fade in image");
                                             weakSelf.posterView.alpha = 0.0;
                                             weakSelf.posterView.image = image;
                                             
@@ -149,12 +149,14 @@
                                             }];
                                         }
                                         else {
-                                            NSLog(@"Image was cached so just update the image");
+                                            //NSLog(@"Image was cached so just update the image");
                                             weakSelf.posterView.image = image;
                                         }
                                     }
                                     failure:^(NSURLRequest *request, NSHTTPURLResponse * response, NSError *error) {
                                         // do something for the failure condition
+                                        //weakSelf.posterView.image = [UIImage imageNamed:@"placeholder-image"];
+                                    
                                     }];
     
     return cell;
