@@ -125,51 +125,9 @@
         LargePosterViewController *largePosterViewController = [segue destinationViewController];
         largePosterViewController.movie = self.movie;
         
-        //NSLog(self.movie);
-        /*
-        //LargePosterViewController *largePosterViewController = [segue destinationViewController];
-        //LargePosterViewController *largeVC = [[LargePosterViewController init] alloc];
-        self.posterView.userInteractionEnabled = YES;
-        UITapGestureRecognizer *pgr = [[UITapGestureRecognizer alloc]
-                                         initWithTarget:self.posterView action:@selector(handlePinch:)];
-        pgr.delegate = self;
-        [self.posterView addGestureRecognizer:pgr];
-        [pgr release];
-        */
-        
-        
-        
     }
     
     
-    
-    
-    /*
-    NSString *trailerURL = [NSString stringWithFormat:@"https://api.themoviedb.org/3/movie/%@/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US]", self.movie[@"id"]];
-    
-    
-    
-    NSURL *url = [NSURL URLWithString:trailerURL];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
-    
-    
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if (error != nil) {
-            NSLog(@"%@", [error localizedDescription]);
-        }
-        else {
-            NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-            NSArray *a = dataDictionary[@"results"];
-            NSDictionary *b = a[0];
-            NSString *skey = b[@"key"];
-            NSString *baseURLString = @"https://www.youtube.com/watch?v=";
-            trailerViewController.videoKey = [baseURLString stringByAppendingString:skey];
-            
-        }
-    }];
-    [task resume];
-     */
 }
 
 

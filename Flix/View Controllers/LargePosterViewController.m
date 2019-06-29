@@ -19,16 +19,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //NSLog(@"didload");
-    // Do any additional setup after loading the view.
-    /*
-    NSString *baseURLString = @"https://image.tmdb.org/t/p/w500";
-    NSString *posterURLString = self.movie[@"poster_path"];
-    
-    NSString *fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
-    NSURL *posterURL = [NSURL URLWithString:fullPosterURLString];
-    [self.posterView setImageWithURL:posterURL];
-    */
     
     NSString *baseSmallURLString = @"https://image.tmdb.org/t/p/w45";
     NSString *posterSmallURLString = self.movie[@"poster_path"];
