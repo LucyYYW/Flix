@@ -29,7 +29,7 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- [x] List anything else that you can get done to improve the app functionality!
 - [x] In the detail view for superhero movies, when the user taps the poster, a new screen is presented modally where they can view the trailer. 
 - [x] While poster is being fetched, user see's a placeholder image.
 
