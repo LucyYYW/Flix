@@ -35,6 +35,9 @@
     
     self.searchBar.delegate = self;
     
+     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    self.tableView.estimatedRowHeight = 300; //UITableViewAutomaticDimension;
     
     // Do any additional setup after loading the view.
     [self fetchMovies];
@@ -91,6 +94,7 @@
             
             // TODO: Reload your table view data
             [self.tableView reloadData];
+            self.tableView.rowHeight = UITableViewAutomaticDimension;
             
             
         }
