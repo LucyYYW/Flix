@@ -29,7 +29,7 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- [x] List anything else that you can get done to improve the app functionality!
 - [x] In the detail view for superhero movies, when the user taps the poster, a new screen is presented modally where they can view the trailer. 
 - [x] While poster is being fetched, user see's a placeholder image.
 
@@ -42,7 +42,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://g.recordit.co/lJWO8U3FqP.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
